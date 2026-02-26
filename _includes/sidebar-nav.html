@@ -1,8 +1,11 @@
 {% comment %}
-  List all content pages that have a layout defined, sorted by optional
-  "order" front matter, then alphabetically by title.
+  List all content pages that have a layout defined, excluding pages
+  with nav_exclude: true. Sorted by optional "order" front matter,
+  then alphabetically by title.
 {% endcomment %}
-{% assign nav_pages = site.pages | where_exp: "p", "p.layout != nil" %}
+{% assign nav_pages = site.pages
+     | where_exp: "p", "p.layout != nil"
+     | where_exp: "p", "p.nav_exclude != true" %}
 
 {% assign ordered   = nav_pages | where_exp: "p", "p.order != nil" | sort: "order" %}
 {% assign unordered = nav_pages | where_exp: "p", "p.order == nil" | sort: "title" %}
