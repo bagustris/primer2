@@ -19,6 +19,8 @@ A two-column [GitBook](https://www.gitbook.com/)-style Jekyll theme for GitHub P
 - **Responsive** — collapses to a single column on mobile with a hamburger menu and overlay backdrop
 - **Auto navigation** — all pages with `layout: default` appear in the sidebar automatically, ordered by optional `order` front matter
 - **Syntax highlighting** — via [Rouge](http://rouge.jneen.net/)
+- **Math (MathJax)** — render LaTeX equations inline or as display blocks with `mathjax: true` front matter
+- **Diagrams (Mermaid)** — render flowcharts, sequence diagrams, and more with `mermaid: true` front matter
 - **SEO ready** — uses `jekyll-seo-tag` for meta tags
 
 ## Repository structure
