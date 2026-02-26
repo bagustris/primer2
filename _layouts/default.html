@@ -9,93 +9,247 @@
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
     <style>
-      .search-wrapper {
-        position: relative;
+      /* ── Two-column GitBook-style layout ── */
+      * { box-sizing: border-box; }
+
+      body { margin: 0; }
+
+      .book-layout {
+        display: flex;
+        min-height: 100vh;
       }
-      .form-control {
+
+      /* ── Sidebar ── */
+      .book-sidebar {
+        width: 260px;
+        min-width: 260px;
+        background: #f6f8fa;
+        border-right: 1px solid #e1e4e8;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 100;
+        transition: transform 0.2s ease;
+      }
+
+      .book-sidebar-header {
+        padding: 20px 16px 12px;
+        border-bottom: 1px solid #e1e4e8;
+        flex-shrink: 0;
+      }
+
+      .book-sidebar-header a {
+        font-weight: 600;
+        font-size: 15px;
+        color: #24292e;
+        text-decoration: none;
+      }
+
+      .book-sidebar-header a:hover { color: #0366d6; }
+
+      /* Search inside sidebar */
+      .sidebar-search {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e1e4e8;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .sidebar-search input {
         width: 100%;
-        padding: 8px 12px;
+        padding: 6px 10px;
         border: 1px solid #d1d5da;
         border-radius: 6px;
-        font-size: 14px;
+        font-size: 13px;
+        background: #fff;
       }
-      .form-control:focus {
+
+      .sidebar-search input:focus {
         outline: none;
         border-color: #0366d6;
         box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
       }
+
       #search-results {
         position: absolute;
         top: 100%;
-        left: 0;
-        right: 0;
+        left: 8px;
+        right: 8px;
         background: white;
         border: 1px solid #d1d5da;
         border-radius: 6px;
         box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
         z-index: 1000;
-        max-height: 400px;
+        max-height: 360px;
         overflow-y: auto;
-        padding: 16px;
+        padding: 12px;
       }
-      .search-result-item:last-child {
-        border-bottom: none !important;
+
+      .search-result-item:last-child { border-bottom: none !important; }
+      .search-result-item h5 { margin: 0 0 4px 0; font-size: 13px; }
+      .search-result-item p  { margin: 0 0 4px 0; font-size: 12px; }
+
+      /* Nav links */
+      .book-nav {
+        padding: 8px 0;
+        flex: 1;
       }
-      .search-result-item h5 {
-        margin: 0 0 8px 0;
+
+      .book-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
       }
-      .search-result-item p {
-        margin: 0 0 4px 0;
+
+      .book-nav li a {
+        display: block;
+        padding: 6px 20px;
+        font-size: 14px;
+        color: #586069;
+        text-decoration: none;
+        border-left: 3px solid transparent;
+        transition: background 0.1s, color 0.1s;
+      }
+
+      .book-nav li a:hover {
+        background: #eaecef;
+        color: #24292e;
+      }
+
+      .book-nav li a.active {
+        color: #0366d6;
+        border-left-color: #0366d6;
+        background: #f1f8ff;
+        font-weight: 600;
+      }
+
+      /* ── Main content ── */
+      .book-content {
+        margin-left: 260px;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .book-content-inner {
+        max-width: 860px;
+        padding: 40px 48px;
+      }
+
+      /* ── Mobile toggle ── */
+      .sidebar-toggle {
+        display: none;
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 200;
+        background: #fff;
+        border: 1px solid #d1d5da;
+        border-radius: 6px;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      @media (max-width: 768px) {
+        .sidebar-toggle { display: block; }
+
+        .book-sidebar {
+          transform: translateX(-100%);
+        }
+
+        .book-sidebar.is-open {
+          transform: translateX(0);
+          box-shadow: 4px 0 16px rgba(0,0,0,0.12);
+        }
+
+        .book-content {
+          margin-left: 0;
+        }
+
+        .book-content-inner {
+          padding: 56px 20px 32px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .book-content-inner { padding: 56px 16px 24px; }
       }
     </style>
   </head>
   <body>
-    <div class="container-lg px-3 my-5 markdown-body">
-      {% if site.title and site.title != page.title %}
-      <h1><a href="{{ "/" | absolute_url }}">{{ site.title }}</a></h1>
-      {% endif %}
+    <!-- Mobile menu toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation">&#9776;</button>
 
-      <!-- Search functionality -->
-      <div class="search-wrapper mb-4">
-        <div class="form-group">
-          <input type="text" id="search-input" placeholder="Search..." class="form-control" />
+    <div class="book-layout">
+      <!-- ── Left sidebar ── -->
+      <nav class="book-sidebar" id="book-sidebar">
+        <div class="book-sidebar-header">
+          <a href="{{ "/" | absolute_url }}">{{ site.title | default: "Home" }}</a>
         </div>
-        <div id="search-results" class="mt-3" style="display: none;">
-          <h4>Search Results</h4>
-          <div id="search-results-list"></div>
+
+        <!-- Search -->
+        <div class="sidebar-search">
+          <input type="text" id="search-input" placeholder="Search…" aria-label="Search" />
+          <div id="search-results" style="display: none;">
+            <div id="search-results-list"></div>
+          </div>
         </div>
-      </div>
 
-      {{ content }}
+        <!-- Page navigation -->
+        <div class="book-nav">
+          {% include sidebar-nav.html %}
+        </div>
+      </nav>
 
-      {% if site.github.private != true and site.github.license %}
-      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
-        This site is open source. {% github_edit_link "Improve this page" %}.
-      </div>
-      {% endif %}
+      <!-- ── Main content ── -->
+      <main class="book-content">
+        <div class="book-content-inner markdown-body">
+          {{ content }}
+
+          {% if site.github.private != true and site.github.license %}
+          <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. {% github_edit_link "Improve this page" %}.
+          </div>
+          {% endif %}
+        </div>
+      </main>
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
-    
+
     <!-- Lunr.js for search -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Search functionality
-        const searchInput = document.getElementById('search-input');
-        const searchResults = document.getElementById('search-results');
-        const searchResultsList = document.getElementById('search-results-list');
-        
-        let searchIndex;
-        let searchData;
-        
-        // Load search data
+        // Mobile sidebar toggle
+        var toggle = document.getElementById('sidebar-toggle');
+        var sidebar = document.getElementById('book-sidebar');
+        toggle.addEventListener('click', function() {
+          sidebar.classList.toggle('is-open');
+        });
+        // Close sidebar when a nav link is clicked on mobile
+        sidebar.querySelectorAll('a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            if (window.innerWidth <= 768) sidebar.classList.remove('is-open');
+          });
+        });
+
+        // Search
+        var searchInput = document.getElementById('search-input');
+        var searchResults = document.getElementById('search-results');
+        var searchResultsList = document.getElementById('search-results-list');
+        var searchIndex, searchData;
+
         fetch('{{ "/assets/search.json" | relative_url }}')
-          .then(response => response.json())
-          .then(data => {
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
             searchData = data;
-            
-            // Build search index
             searchIndex = lunr(function() {
               this.ref('id');
               this.field('title', { boost: 10 });
@@ -103,65 +257,49 @@
               this.field('excerpt');
               this.field('categories');
               this.field('tags');
-              
               data.forEach(function(doc, idx) {
                 doc.id = idx;
                 this.add(doc);
               }, this);
             });
           })
-          .catch(error => {
-            console.error('Error loading search data:', error);
-          });
-        
-        // Search functionality
+          .catch(function(e) { console.error('Search load error:', e); });
+
         searchInput.addEventListener('input', function() {
-          const query = this.value.trim();
-          
-          if (query.length < 2) {
-            searchResults.style.display = 'none';
-            return;
-          }
-          
+          var query = this.value.trim();
+          if (query.length < 2) { searchResults.style.display = 'none'; return; }
           if (!searchIndex) {
-            searchResultsList.innerHTML = '<p>Search index is loading...</p>';
+            searchResultsList.innerHTML = '<p>Loading…</p>';
             searchResults.style.display = 'block';
             return;
           }
-          
           try {
-            const results = searchIndex.search(query);
-            displaySearchResults(results, query);
-          } catch (error) {
-            console.error('Search error:', error);
-            searchResultsList.innerHTML = '<p>Search error occurred.</p>';
+            displaySearchResults(searchIndex.search(query), query);
+          } catch(e) {
+            searchResultsList.innerHTML = '<p>Search error.</p>';
             searchResults.style.display = 'block';
           }
         });
-        
+
         function displaySearchResults(results, query) {
           if (results.length === 0) {
-            searchResultsList.innerHTML = '<p>No results found for "' + query + '"</p>';
+            searchResultsList.innerHTML = '<p>No results for "' + query + '"</p>';
           } else {
-            let html = '';
-            results.slice(0, 10).forEach(function(result) {
-              const item = searchData[result.ref];
-              html += '<div class="search-result-item mb-3 pb-3 border-bottom">';
+            var html = '';
+            results.slice(0, 8).forEach(function(result) {
+              var item = searchData[result.ref];
+              html += '<div class="search-result-item mb-2 pb-2 border-bottom">';
               html += '<h5><a href="' + item.url + '">' + item.title + '</a></h5>';
-              if (item.excerpt) {
-                html += '<p class="text-gray">' + item.excerpt + '</p>';
-              }
-              html += '<small class="text-gray">Score: ' + result.score.toFixed(2) + '</small>';
+              if (item.excerpt) html += '<p class="text-gray">' + item.excerpt + '</p>';
               html += '</div>';
             });
             searchResultsList.innerHTML = html;
           }
           searchResults.style.display = 'block';
         }
-        
-        // Hide search results when clicking outside
-        document.addEventListener('click', function(event) {
-          if (!searchResults.contains(event.target) && event.target !== searchInput) {
+
+        document.addEventListener('click', function(e) {
+          if (!searchResults.contains(e.target) && e.target !== searchInput) {
             searchResults.style.display = 'none';
           }
         });
