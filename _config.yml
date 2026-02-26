@@ -3,8 +3,8 @@ plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
 
-title: Jekyll Theme Primer
-description: Demo site for primer2-theme — a two-column GitBook-style Jekyll theme
+title: primer2-theme Docs
+description: Documentation for primer2-theme — a two-column GitBook-style Jekyll theme for GitHub Pages
 
 exclude:
   - README.md

@@ -1,125 +1,31 @@
 ---
 layout: default
-title: Home
+title: Introduction
 order: 1
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# primer2-theme
 
-[Link to another page](./another-page.html).
+A two-column [GitBook](https://www.gitbook.com/)-style Jekyll theme for GitHub Pages, built on GitHub's [Primer](https://primer.style/) design system.
 
-There should be whitespace between paragraphs.
+**[→ View on GitHub](https://github.com/bagustris/primer2-theme)** · **[→ Use the template](https://github.com/bagustris/primer2-template)**
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+![Screenshot](./thumbnail.png)
 
-# Header 1
+## Features
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+- **Two-column layout** — fixed sidebar with auto-generated page navigation on the left, main content on the right
+- **Sidebar search** — client-side full-text search powered by [Lunr.js](https://lunrjs.com/), no server required
+- **Responsive** — collapses to a single column on mobile with a hamburger menu and overlay backdrop
+- **Auto navigation** — all pages with `layout: default` appear in the sidebar automatically, ordered by optional `order` front matter
+- **Syntax highlighting** — via [Rouge](http://rouge.jneen.net/)
+- **SEO ready** — uses `jekyll-seo-tag` for meta tags
 
-## Header 2
+## Repository structure
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+| Repository | Purpose |
+|---|---|
+| [primer2-theme](https://github.com/bagustris/primer2-theme) | Theme source — layouts, sass, includes |
+| [primer2-template](https://github.com/bagustris/primer2-template) | Starter site — click "Use this template" |
+| [primer2](https://github.com/bagustris/primer2) | This documentation site |
 
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-#### Header 4
-
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](./278048.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
