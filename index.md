@@ -10,8 +10,6 @@ A two-column [GitBook](https://www.gitbook.com/)-style Jekyll theme for GitHub P
 
 **[→ View on GitHub](https://github.com/bagustris/primer2-theme)** · **[→ Use the template](https://github.com/bagustris/primer2-template)**
 
-![Screenshot](./thumbnail.png)
-
 ## Features
 
 - **Two-column layout** — fixed sidebar with auto-generated page navigation on the left, main content on the right
