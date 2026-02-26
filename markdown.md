@@ -3,14 +3,15 @@ layout: default
 title: Markdown
 order: 6
 ---
+To see the source for this file, visit [this page source](https://github.com/bagustris/primer2/edit/gh-pages/markdown.md).
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](./installation.html).
 
-There should be whitespace between paragraphs.
+There should be whitespace between paragraphs. A paragraph should only contain a single idea, usually in the beginning. It consists at least three sentences.
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+Again, there should be whitespace between paragraphs. We recommend including a README, or a file wi      th information about your project.
 
 # Header 1
 
@@ -52,6 +53,8 @@ end
 3.  This is an ordered list following a header.
 
 ###### Header 6
+
+### Table 
 
 | head1        | head two          | three |
 |:-------------|:------------------|:------|
