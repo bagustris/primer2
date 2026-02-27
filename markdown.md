@@ -56,6 +56,12 @@ end
 
 ### Table 
 
+#### A single row table  
+
+column 1 | column 2
+
+#### Multi-row column table  
+
 | head1        | head two          | three |
 |:-------------|:------------------|:------|
 | ok           | good swedish fish | nice  |
