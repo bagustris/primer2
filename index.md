@@ -4,11 +4,13 @@ title: Introduction
 order: 1
 ---
 
-# primer2-theme
+# primer2
 
 A two-column [GitBook](https://www.gitbook.com/)-style Jekyll theme for GitHub Pages, built on GitHub's [Primer](https://primer.style/) design system.
 
-**[→ View on GitHub](https://github.com/bagustris/primer2-theme)** · **[→ Use the template](https://github.com/bagustris/primer2-template)**
+
+| **[View on GitHub](https://github.com/bagustris/primer2-theme)** | **[Use the template](https://github.com/bagustris/primer2-template)**|
+|---|---|
 
 ## Features
 
