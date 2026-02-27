@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Contributing
-order: -1
+order: 99
 ---
 
 # Contributing
