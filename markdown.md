@@ -3,7 +3,7 @@ layout: default
 title: Markdown
 order: 6
 ---
-To see the source for this file, visit [this page source](https://github.com/bagustris/primer2/edit/gh-pages/markdown.md).
+To see the source for this file, visit [this page source](https://github.com/bagustris/primer2/blob/master/markdown.md?plain=1).
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
