@@ -4,6 +4,9 @@ plugins:
   - jekyll-seo-tag
 
 title: primer2
+url: "https://bagustris.github.io"
+baseurl: "/primer2"
+repository: bagustris/primer2
 description: Documentation for primer2-theme — a two-column Jekyll theme for GitHub Pages
 
 exclude:
