@@ -17,10 +17,12 @@ The `_includes/sidebar-nav.html` include collects every page that:
 
 It then sorts them: pages with an `order` value come first (ascending), followed by pages without `order` sorted alphabetically by title.
 
+{% raw %}
 ```liquid
 {% assign ordered   = nav_pages | where_exp: "p", "p.order != nil" | sort: "order" %}
 {% assign unordered = nav_pages | where_exp: "p", "p.order == nil" | sort: "title" %}
 ```
+{% endraw %}
 
 ## Controlling order
 
