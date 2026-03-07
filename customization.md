@@ -55,3 +55,20 @@ Override in your custom CSS:
 ```css
 .book-content-inner { max-width: 960px; }
 ```
+## Markdown Header
+
+Example of markdown header 
+
+```
+---
+layout: default
+title: Home
+order: 1
+---
+```   
+If you want to exclude a page, e.g., `index.md` from the sidebar, add `exclude: true` to the markdown header:
+
+```---
+nav_exclude: true
+---
+```
