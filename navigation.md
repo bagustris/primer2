@@ -13,9 +13,12 @@ The sidebar navigation is generated automatically from your site's pages at buil
 The `_includes/sidebar-nav.html` include collects every page that:
 
 1. Has a `layout` value set in its front matter, **and**
-2. Does **not** have `nav_exclude: true`
+2. Does **not** have `nav_exclude: true`, **and**
+3. Produces HTML output (pages whose URL ends in `.xml`, `.txt`, `.scss`, `.css`, or `.json` are skipped)
 
-It then sorts them: pages with an `order` value come first (ascending), followed by pages without `order` sorted alphabetically by title.
+The third rule keeps plugin- and theme-generated files such as `feed.xml` (jekyll-feed), `sitemap.xml` (jekyll-sitemap), `robots.txt`, and `assets/css/style.scss` out of the sidebar even when they inherit a `layout` value from a site-wide `_config.yml` default.
+
+It then sorts the remaining pages: those with an `order` value come first (ascending), followed by pages without `order` sorted alphabetically by title.
 
 {% raw %}
 ```liquid
