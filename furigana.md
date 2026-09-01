@@ -6,22 +6,24 @@ order: 7
 Furigana are small reading aids printed above kanji to show their
 pronunciation. This theme supports them two ways.
 
-## Raw HTML
-
-Kramdown passes raw HTML straight through, so the standard `<ruby>` element
-always works, no plugin required:
-
-```html
-<ruby>漢字<rt>かんじ</rt></ruby>
-```
-
-<ruby>漢字<rt>かんじ</rt></ruby> is the Japanese word for "kanji".
-
 ## Shorthand include
 
-Typing `<ruby>`/`<rt>` for every word gets tedious in a full sentence, so the
-theme ships an [`furigana.html`](https://github.com/bagustris/primer2-theme/blob/master/_includes/furigana.html)
-include:
+The theme ships a [`furigana.html`](https://github.com/bagustris/primer2-theme/blob/master/_includes/furigana.html)
+include. Write a whole sentence in one call and mark each reading as
+`[kanji|reading]`:
+
+{% raw %}
+```liquid
+{% include furigana.html text="[今日|きょう]は[日本語|にほんご]の[勉強|べんきょう]をします。" %}
+```
+{% endraw %}
+
+renders as:
+
+{% include furigana.html text="[今日|きょう]は[日本語|にほんご]の[勉強|べんきょう]をします。" %}
+
+Text outside the brackets is passed through untouched, so you only mark the
+words that need a reading. For a single word, `reading=` also works:
 
 {% raw %}
 ```liquid
@@ -29,17 +31,18 @@ include:
 ```
 {% endraw %}
 
-Call it once per word to build up a sentence:
+renders as {% include furigana.html text="漢字" reading="かんじ" %}.
 
-{% raw %}
-```liquid
-{% include furigana.html text="今日" reading="きょう" %}は{% include furigana.html text="日本語" reading="にほんご" %}の{% include furigana.html text="勉強" reading="べんきょう" %}をします。
+## Raw HTML
+
+Kramdown passes raw HTML straight through, so the standard `<ruby>` element
+always works too, with no include:
+
+```html
+<ruby>漢字<rt>かんじ</rt></ruby>
 ```
-{% endraw %}
 
-renders as:
-
-{% include furigana.html text="今日" reading="きょう" %}は{% include furigana.html text="日本語" reading="にほんご" %}の{% include furigana.html text="勉強" reading="べんきょう" %}をします。
+<ruby>漢字<rt>かんじ</rt></ruby> is the Japanese word for "kanji".
 
 > [!NOTE]
 > Unlike a custom Liquid tag, an `_includes/*.html` file ships with the theme
