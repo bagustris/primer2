@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Upgrading
-order: 10
+order: 11
 ---
 
 # Upgrading

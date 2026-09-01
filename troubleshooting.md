@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Troubleshooting
-order: 11
+order: 12
 ---
 
 # Troubleshooting

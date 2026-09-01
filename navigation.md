@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Navigation
-order: 9
+order: 10
 ---
 
 # Sidebar Navigation

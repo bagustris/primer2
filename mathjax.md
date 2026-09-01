@@ -1,7 +1,7 @@
 ---
 layout: default
 title: MathJax
-order: 7
+order: 8
 mathjax: true
 ---
 
